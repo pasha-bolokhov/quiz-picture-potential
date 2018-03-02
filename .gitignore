@@ -1,0 +1,11 @@
+#
+*.aux
+*.dvi
+*.log
+*.toc
+texput.log
+*.bak
+*~
+*.pdf
+*.jpg
+*.png

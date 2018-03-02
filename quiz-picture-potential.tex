@@ -1,0 +1,287 @@
+\documentclass[crop]{standalone}
+\usepackage{rotating}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+%\usepackage[top=0.5in, right=0.5in, left=0.5in, bottom=0.8in]{geometry}
+%\geometry{letterpaper}
+\usepackage{color}
+\usepackage{bm}
+\usepackage{slashed}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{enumitem}
+%\usepackage{showlabels}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,patterns,arrows.meta,calc,decorations.markings,fadings}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+%                                                                              %
+%                     D O C U M E N T   S E T T I N G S                        %
+%                                                                              %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\baselinestretch{1.1}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\hyphenation{con-fi-ning}
+\hyphenation{Cou-lomb}
+\hyphenation{Yan-ki-e-lo-wicz}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+%                                                                              %
+%                      C O M M O N   D E F I N I T I O N S                     %
+%                                                                              %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\beqn{\begin{eqnarray}}
+\def\eeqn{\end{eqnarray}}
+\def\beqn{\begin{eqnarray}}
+\def\eeqn{\end{eqnarray}}
+\def\nn{\nonumber}
+\def\ba{\beq\new\begin{array}{c}}
+\def\ea{\end{array}\eeq}
+\def\be{\ba}
+\def\ee{\ea}
+
+
+\newcommand{\nfour}{${\cal N}=4\;$}
+\newcommand{\none}{${\mathcal N}=1\,$}
+\newcommand{\nonen}{${\mathcal N}=1$}
+\newcommand{\ntwo}{${\mathcal N}=2$}
+\newcommand{\ntt}{${\mathcal N}=(2,2)\,$}
+\newcommand{\nzt}{${\mathcal N}=(0,2)\,$}
+\newcommand{\ntwon}{${\mathcal N}=2$}
+\newcommand{\ntwot}{${\mathcal N}= \left(2,2\right) $ }
+\newcommand{\ntwoo}{${\mathcal N}= \left(0,2\right) $ }
+\newcommand{\ntwoon}{${\mathcal N}= \left(0,2\right)$}
+
+
+\newcommand{\ca}{{\mathcal A}}
+\newcommand{\cell}{{\mathcal L}}
+\newcommand{\cw}{{\mathcal W}}
+\newcommand{\cs}{{\mathcal S}}
+\newcommand{\vp}{\varphi}
+\newcommand{\pt}{\partial}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\gs}{g^{2}}
+\newcommand{\zn}{$Z_N$}
+\newcommand{\cd}{${\mathcal D}$}
+\newcommand{\cde}{{\mathcal D}}
+\newcommand{\cf}{${\mathcal F}$}
+\newcommand{\cfe}{{\mathcal F}}
+\newcommand{\ff}{\mc{F}}
+\newcommand{\bff}{\ov{\mc{F}}}
+
+
+\newcommand{\p}{\partial}
+\newcommand{\wt}{\widetilde}
+\newcommand{\ov}{\overline}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\md}{\mathcal{D}}
+\newcommand{\ml}{\mathcal{L}}
+\newcommand{\mw}{\mathcal{W}}
+\newcommand{\ma}{\mathcal{A}}
+
+
+\newcommand{\GeV}{{\rm GeV}}
+\newcommand{\eV}{{\rm eV}}
+\newcommand{\Heff}{{\mathcal{H}_{\rm eff}}}
+\newcommand{\Leff}{{\mathcal{L}_{\rm eff}}}
+\newcommand{\el}{{\rm EM}}
+\newcommand{\uflavor}{\mathbf{1}_{\rm flavor}}
+\newcommand{\lgr}{\left\lgroup}
+\newcommand{\rgr}{\right\rgroup}
+
+
+\newcommand{\Mpl}{M_{\rm Pl}}
+\newcommand{\suc}{{{\rm SU}_{\rm C}(3)}}
+\newcommand{\sul}{{{\rm SU}_{\rm L}(2)}}
+\newcommand{\sutw}{{\rm SU}(2)}
+\newcommand{\suth}{{\rm SU}(3)}
+\newcommand{\ue}{{\rm U}(1)}
+
+
+\newcommand{\LN}{\Lambda_\text{SU($N$)}}
+\newcommand{\sunu}{{\rm SU($N$) $\times$ U(1) }}
+\newcommand{\sunun}{{\rm SU($N$) $\times$ U(1)}}
+\def\cfl {$\text{SU($N$)}_{\rm C+F}$ }
+\def\cfln {$\text{SU($N$)}_{\rm C+F}$}
+\newcommand{\mUp}{m_{\rm U(1)}^{+}}
+\newcommand{\mUm}{m_{\rm U(1)}^{-}}
+\newcommand{\mNp}{m_\text{SU($N$)}^{+}}
+\newcommand{\mNm}{m_\text{SU($N$)}^{-}}
+\newcommand{\AU}{\mc{A}^{\rm U(1)}}
+\newcommand{\AN}{\mc{A}^\text{SU($N$)}}
+\newcommand{\aU}{a^{\rm U(1)}}
+\newcommand{\aN}{a^\text{SU($N$)}}
+\newcommand{\baU}{\ov{a}{}^{\rm U(1)}}
+\newcommand{\baN}{\ov{a}{}^\text{SU($N$)}}
+\newcommand{\lU}{\lambda^{\rm U(1)}}
+\newcommand{\lN}{\lambda^\text{SU($N$)}}
+\newcommand{\bxir}{\ov{\xi}{}_R}
+\newcommand{\bxil}{\ov{\xi}{}_L}
+\newcommand{\xir}{\xi_R}
+\newcommand{\xil}{\xi_L}
+\newcommand{\bzl}{\ov{\zeta}{}_L}
+\newcommand{\bzr}{\ov{\zeta}{}_R}
+\newcommand{\zr}{\zeta_R}
+\newcommand{\zl}{\zeta_L}
+\newcommand{\nbar}{\ov{n}}
+\newcommand{\nnbar}{n\ov{n}}
+\newcommand{\muU}{\mu_\text{U}}
+
+
+\newcommand{\cpn}{CP$^{N-1}$\,}
+\newcommand{\CPC}{CP($N-1$)$\times$C }
+\newcommand{\CPCn}{CP($N-1$)$\times$C}
+
+
+\newcommand{\lar}{\lambda_R}
+\newcommand{\lal}{\lambda_L}
+\newcommand{\larl}{\lambda_{R,L}}
+\newcommand{\lalr}{\lambda_{L,R}}
+\newcommand{\blar}{\ov{\lambda}{}_R}
+\newcommand{\blal}{\ov{\lambda}{}_L}
+\newcommand{\blarl}{\ov{\lambda}{}_{R,L}}
+\newcommand{\blalr}{\ov{\lambda}{}_{L,R}}
+
+
+\newcommand{\bgamma}{\ov{\gamma}}
+\newcommand{\bpsi}{\ov{\psi}{}}
+\newcommand{\bphi}{\ov{\phi}{}}
+\newcommand{\bxi}{\ov{\xi}{}}
+
+
+\newcommand{\qt}{\wt{q}}
+\newcommand{\bq}{\ov{q}}
+\newcommand{\bqt}{\overline{\widetilde{q}}}
+
+
+\newcommand{\eer}{\epsilon_R}
+\newcommand{\eel}{\epsilon_L}
+\newcommand{\eerl}{\epsilon_{R,L}}
+\newcommand{\eelr}{\epsilon_{L,R}}
+\newcommand{\beer}{\ov{\epsilon}{}_R}
+\newcommand{\beel}{\ov{\epsilon}{}_L}
+\newcommand{\beerl}{\ov{\epsilon}{}_{R,L}}
+\newcommand{\beelr}{\ov{\epsilon}{}_{L,R}}
+
+
+\newcommand{\bi}{{\bar \imath}}
+\newcommand{\bj}{{\bar \jmath}}
+\newcommand{\bk}{{\bar k}}
+\newcommand{\bl}{{\bar l}}
+\newcommand{\bmm}{{\bar m}}
+
+
+\newcommand{\nz}{{n^{(0)}}}
+\newcommand{\no}{{n^{(1)}}}
+\newcommand{\bnz}{{\ov{n}{}^{(0)}}}
+\newcommand{\bno}{{\ov{n}{}^{(1)}}}
+\newcommand{\Dz}{{D^{(0)}}}
+\newcommand{\Do}{{D^{(1)}}}
+\newcommand{\bDz}{{\ov{D}{}^{(0)}}}
+\newcommand{\bDo}{{\ov{D}{}^{(1)}}}
+\newcommand{\sigz}{{\sigma^{(0)}}}
+\newcommand{\sigo}{{\sigma^{(1)}}}
+\newcommand{\bsigz}{{\ov{\sigma}{}^{(0)}}}
+\newcommand{\bsigo}{{\ov{\sigma}{}^{(1)}}}
+
+
+\newcommand{\rrenz}{{r_\text{ren}^{(0)}}}
+\newcommand{\bren}{{\beta_\text{ren}}}
+
+
+\newcommand{\Tr}{\text{Tr}}
+\newcommand{\Ts}{\text{Ts}}
+\newcommand{\dm}{\hat{{\scriptstyle \Delta} m}}
+\newcommand{\dmdag}{\hat{{\scriptstyle \Delta} m}{}^\dag}
+\newcommand{\mhat}{\widehat{m}}
+\newcommand{\deltam}{{\scriptstyle \Delta} m}
+\newcommand{\nvac}{\vec{n}{}_\text{vac}}
+
+
+\newcommand{\ie}{{\it i.e.}~}
+\newcommand{\eg}{{\it e.g.}~}
+\newcommand{\ansatz}{{\it ansatz} }
+
+
+% Physical units
+\newcommand{\kg}{\,\text{kg}}
+\newcommand{\Cel}{\,^\circ\text{C}}
+\newcommand{\Kel}{\,\text{K}}
+\newcommand{\gram}{\,\text{g}}
+\newcommand{\centi}{\,\text{cm}}
+\newcommand{\metre}{\,\text{m}}
+\newcommand{\watt}{\,\text{W}}
+\newcommand{\inch}{\,\text{in}}
+\newcommand{\joule}{\,\text{J}}
+\newcommand{\Cal}{\,\text{cal}}
+\newcommand{\atm}{\,\text{atm}}
+\newcommand{\pascal}{\,\text{Pa}}
+\newcommand{\mole}{\,\text{mol}}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+	%
+	% Axes
+	%
+	\draw [thick, ->, >={Stealth[length=3mm]}] (-7.5, 0) -- (7.5,0)
+		node [right, below] {$ x $};
+	\draw [thick, ->, >={Stealth[length=3mm]}] (0, -1) -- (0, 7)
+		node [above, right] {$ y $};
+
+	\def\chgdist{6.0}
+	%
+	% Negative charge
+	%
+	\def\negcolor{Purple}
+	\def\negrad{0.4}
+	\shade [draw=none, ball color=\negcolor]
+		(\chgdist, 0) circle (\negrad)
+		node [below, yshift=-6mm] {$ Q_2 ~=~ -40\,\mu \text{C}$};
+
+	%
+	% Positive charge
+	%
+	\def\poscolor{WildStrawberry}
+	\def\posrad{0.3}
+	\shade [draw=none, ball color=\poscolor]
+		(-\chgdist, 0) circle (\posrad)
+		node [below, yshift=-6mm] {$ Q_1 ~=~ +20\,\mu \text{C}$};
+
+	%
+	% Point A
+	%
+	\def\ptrad{0.1}
+	\coordinate (A) at (-\chgdist, {\chgdist} );
+	\filldraw (A) [draw=none, fill=black] circle (\ptrad) node [above, left, xshift=-3mm, yshift=3mm] { A };
+
+	%
+	% Distances
+	%
+	\draw [thick, draw=blue, style={Stealth[length=2.0mm]}-{Stealth[length=2.0mm]}, dash pattern=on 7pt off 2pt]
+		($ ( -\chgdist, 0 ) + (0, \posrad) $) -- ($ (A) + (0, -\ptrad) $)
+		node [xshift=-3mm, midway, color=blue, rotate=90] {$ 40\,\text{cm} $};
+	\draw [thick, draw=blue, style={Stealth[length=2.0mm]}-{Stealth[length=2.0mm]}, dash pattern=on 7pt off 2pt]
+		($ ( \chgdist, 0) + (-0.3, 0.3) $) -- ($ (A) + (0.1, -0.08) $)
+		node [midway, above, color=blue, rotate={-atan(0.5)}] {$ 80\,\text{cm} $};
+\end{tikzpicture}
+
+\end{document}
