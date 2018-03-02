@@ -16,7 +16,8 @@
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{multicol}
 \usepackage{tikz}
-\usetikzlibrary{decorations.pathmorphing,patterns,arrows.meta,calc,decorations.markings,fadings}
+\usetikzlibrary{decorations.pathmorphing,patterns,arrows.meta}
+\usetikzlibrary{intersections,calc,decorations.markings,fadings}
 
 
 
@@ -253,7 +254,7 @@
 	%
 	\def\negcolor{Purple}
 	\def\negrad{0.4}
-	\shade [draw=none, ball color=\negcolor]
+	\shade [draw=none, ball color=\negcolor, name path=neg-charge]
 		(\chgdist, 0) circle (\negrad)
 		node [below, yshift=-6mm] {$ Q_2 ~=~ -40\,\mu \text{C}$};
 
@@ -262,7 +263,7 @@
 	%
 	\def\poscolor{WildStrawberry}
 	\def\posrad{0.3}
-	\shade [draw=none, ball color=\poscolor]
+	\shade [draw=none, ball color=\poscolor, name path=pos-charge]
 		(-\chgdist, 0) circle (\posrad)
 		node [below, yshift=-6mm] {$ Q_1 ~=~ +20\,\mu \text{C}$};
 
@@ -271,16 +272,25 @@
 	%
 	\def\ptrad{0.1}
 	\coordinate (A) at (-\chgdist, {\chgdist} );
-	\filldraw (A) [draw=none, fill=black] circle (\ptrad) node [above, left, xshift=-3mm, yshift=3mm] { A };
+	\filldraw (A) [draw=none, fill=black, name path=point-A]
+		circle (\ptrad) node [above, left, xshift=-3mm, yshift=3mm] { A };
 
 	%
 	% Distances
 	%
-	\draw [thick, draw=blue, style={Stealth[length=2.0mm]}-{Stealth[length=2.0mm]}, dash pattern=on 7pt off 2pt]
-		($ ( -\chgdist, 0 ) + (0, \posrad) $) -- ($ (A) + (0, -\ptrad) $)
+	\path [draw=none, name path=distance-pos-A]
+		(-\chgdist, 0) -- (A);
+	\path [draw=none, name path=distance-neg-A]
+		(\chgdist, 0) -- (A);
+	\draw [thick, draw=blue, style={Stealth[length=2.0mm]}-{Stealth[length=2.0mm]}, dash pattern=on 7pt off 2pt,
+		name intersections={of=distance-pos-A and pos-charge, name=pos-connect},
+		name intersections={of=distance-pos-A and point-A, name=point-A-pos-connect}]
+		(pos-connect-1) -- (point-A-pos-connect-1)
 		node [xshift=-3mm, midway, color=blue, rotate=90] {$ 40\,\text{cm} $};
-	\draw [thick, draw=blue, style={Stealth[length=2.0mm]}-{Stealth[length=2.0mm]}, dash pattern=on 7pt off 2pt]
-		($ ( \chgdist, 0) + (-0.3, 0.3) $) -- ($ (A) + (0.1, -0.08) $)
+	\draw [thick, draw=blue, style={Stealth[length=2.0mm]}-{Stealth[length=2.0mm]}, dash pattern=on 7pt off 2pt,
+		name intersections={of=distance-neg-A and neg-charge, name=neg-connect},
+		name intersections={of=distance-neg-A and point-A, name=point-A-neg-connect}]
+		(neg-connect-1) -- (point-A-neg-connect-1)
 		node [midway, above, color=blue, rotate={-atan(0.5)}] {$ 80\,\text{cm} $};
 \end{tikzpicture}
 
